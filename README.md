@@ -18,14 +18,22 @@
 - Compare two files (with MD5 and SHA1 hash)
 - Random renaming all files in a directory
 
-# Requirements
+# Installation
 
-- PHP >7.2 must be installed on your computer.
-
-# Disclaimer
+## Disclaimer
 
 This script has only been tested on a Windows PC.  
 I am not responsible for any damage or problems occured from this script on your data. Always backup your data before anything.
+
+## Requirements
+
+PHP >7.2 must be installed on your computer.
+
+## Files Multi Tools
+
+- Clone the repository : `git clone https://github.com/n-deleforge/files-multi-tools.git`
+- Go to the directory : `cd files-multi-tools`
+- Start the script : `php files-multi-tools.php`
 
 # Changelog
 
