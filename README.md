@@ -29,9 +29,9 @@ I am not responsible for any damage or problems occured from this script on your
 
 PHP >7.2 must be installed on your computer.
 
-## FInstallation
+## Installation
 
-```CMD
+```
 git clone https://github.com/n-deleforge/files-multi-tools.git`
 cd files-multi-tools`
 php files-multi-tools.php`
