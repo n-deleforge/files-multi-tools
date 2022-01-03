@@ -18,7 +18,7 @@
 - Compare two files (with MD5 and SHA1 hash)
 - Random renaming all files in a directory
 
-# Installation
+# Quick start
 
 ## Disclaimer
 
@@ -29,11 +29,13 @@ I am not responsible for any damage or problems occured from this script on your
 
 PHP >7.2 must be installed on your computer.
 
-## Files Multi Tools
+## Installation
 
-- Clone the repository : `git clone https://github.com/n-deleforge/files-multi-tools.git`
-- Go to the directory : `cd files-multi-tools`
-- Start the script : `php files-multi-tools.php`
+```
+git clone https://github.com/n-deleforge/files-multi-tools.git`
+cd files-multi-tools`
+php files-multi-tools.php`
+```
 
 # Changelog
 
