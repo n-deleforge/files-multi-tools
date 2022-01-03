@@ -179,7 +179,9 @@ function randomRenaming() {
         // Renaming
         foreach ($scan as $file) {
             $data = explode(".", $file);
-            rename($path . $file, $path . randomValue() . "." . $data[1]);
+            $extension = end($data);
+
+            rename($path . $file, $path . randomValue() . "." . $extension);
         }
 
         backToMenu();
