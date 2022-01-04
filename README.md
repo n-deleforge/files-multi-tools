@@ -37,6 +37,13 @@ cd files-multi-tools`
 php files-multi-tools.php`
 ```
 
+## Launch via terminal
+
+- Create a bat file named "files-multi-tools"
+- Edit it with the following line : `php "path/to/the/direcotry/files-multi-tools.php"` (you have to modify the path according your configuration)
+- Add the directory of the bat file in the PATH variable of your Windows
+- Type "files-multi-tools" in your terminal to check if it's works
+
 # Changelog
 
 - 0.1 : Initial release
