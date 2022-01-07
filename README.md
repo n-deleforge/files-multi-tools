@@ -44,4 +44,5 @@ php files-multi-tools.php`
 
 # Changelog
 
+- 0.2 : separation of the script in multiples files, new interface, more errors or informations messages
 - 0.1 : Initial release
