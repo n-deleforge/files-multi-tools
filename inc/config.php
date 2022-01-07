@@ -4,7 +4,7 @@
 // ==== CONSTANTS
 
 define("VERSION", 0.2);
-define("LANG", $french);
+define("LANG", $english);
 
 // ========================
 // ==== CATEGORIES AND APPS
