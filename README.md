@@ -32,9 +32,9 @@ PHP >7.2 must be installed on your computer.
 ## Installation
 
 ```
-git clone https://github.com/n-deleforge/files-multi-tools.git`
-cd files-multi-tools`
-php files-multi-tools.php`
+git clone https://github.com/n-deleforge/files-multi-tools.git
+cd files-multi-tools
+php files-multi-tools.php
 ```
 
 ## Launch it with the terminal (for Windows only)
