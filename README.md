@@ -14,9 +14,10 @@
 
 # Features
 
-- List all files from a directory in a text file (extension can be removed, a prefix can be added)
-- Compare two files (with MD5 and SHA1 hash)
+- List all files in a directory to a text file (extension can be removed, a prefix can be added)
 - Random renaming all files in a directory
+- Modify all files extensions in a directory (do not convert!)
+- Compare two files (with MD5 and SHA1 hash)
 
 # Quick start
 
@@ -44,5 +45,6 @@ php files-multi-tools.php`
 
 # Changelog
 
+- 0.2.1 : more messages, more informations, new script : modify extensions
 - 0.2 : separation of the script in multiples files, new interface, more errors or informations messages
 - 0.1 : Initial release
