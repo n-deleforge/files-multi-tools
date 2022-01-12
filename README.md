@@ -14,10 +14,12 @@
 
 # Features
 
-- List all files in a directory to a text file (extension can be removed, a prefix can be added)
-- Random renaming all files in a directory
-- Modify all files extensions in a directory (do not convert!)
-- Compare two files (with MD5 and SHA1 hash)
+- Bulk file operations
+    - List all files
+    - Random renaming all files
+    - Modify all file extensions
+- Specific file operations
+    - Compare two files
 
 # Quick start
 

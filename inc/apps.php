@@ -115,9 +115,10 @@ function modifyExtension() {
     $scan = array_diff(scandir($path), array('..', '.'));
 
     foreach ($scan as $file) {
+        // Removing original extension
         $name = explode(".", $file);
         array_splice($name, count($name) - 1);
-        $name = implode($name);
+        $name = implode(".", $name);
 
         // Renaming
         rename($path . $file, $path . $name . "." . $extension);
