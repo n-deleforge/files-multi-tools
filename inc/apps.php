@@ -48,6 +48,7 @@ function compareFiles() {
     // Calculate hash MD5
     displayText("MD5", "second-title-b");
     $md5FileA = md5_file($fileA);
+    sleep(2);
     $md5FileB = md5_file($fileB);
 
     echo "A : " . $md5FileA;
@@ -60,6 +61,7 @@ function compareFiles() {
     // Calculate hash SHA1
     displayText("SHA1", "second-title-b");
     $sha1FileA = sha1_file($fileA);
+    sleep(2);
     $sha1FileB = sha1_file($fileB);
 
     echo "A : " . $sha1FileA;
