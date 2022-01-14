@@ -40,7 +40,7 @@ cd files-multi-tools
 php files-multi-tools.php
 ```
 
-## Launch it with the terminal (for Windows only)
+## Launch it from the terminal (Windows only)
 
 - Edit the PATH global variable and add the directory of files-multi-tools
 - Type "fmt" in your terminal to check if it's works
