@@ -2,7 +2,7 @@
 // =============
 // ==== SETTINGS
 
-define("VERSION", "0.2.1");
+define("VERSION", "0.2.2");
 define("LANG", $english);
 
 // ===========================
@@ -18,4 +18,20 @@ define("SCRIPTS", [
     ["categorie" => 1, "id" => 11, "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
     ["categorie" => 1, "id" => 12, "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
     ["categorie" => 2, "id" => 20, "title" => LANG["compareFilesName"], "function" => "compareFiles"],
+]);
+
+// =========
+// ==== MISC
+
+define("EXCLUDED", [
+    // Linux / Windows folders
+    "..",
+    ".",
+
+    // Windows files
+    "Thumbs.db",
+    "Desktop.ini",
+
+    // Synology folders (NAS)
+    "@eaDir",
 ]);

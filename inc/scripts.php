@@ -14,7 +14,7 @@ function listFiles() {
     $prefix = readline2(LANG["listFilesQuestion3"]);
 
     // Scan the directory
-    $scan = array_diff(scandir($path), array('..', '.'));
+    $scan = array_diff(scandir($path), EXCLUDED);
 
     // Open the text file and write each line
     $file = fopen($path . "output.txt", "w");
@@ -48,7 +48,7 @@ function compareFiles() {
     // Calculate hash MD5
     displayText("MD5", "second-title-b");
     $md5FileA = md5_file($fileA);
-    sleep(2);
+    sleep(1);
     $md5FileB = md5_file($fileB);
 
     echo "A : " . $md5FileA;
@@ -61,7 +61,7 @@ function compareFiles() {
     // Calculate hash SHA1
     displayText("SHA1", "second-title-b");
     $sha1FileA = sha1_file($fileA);
-    sleep(2);
+    sleep(1);
     $sha1FileB = sha1_file($fileB);
 
     echo "A : " . $sha1FileA;
@@ -86,7 +86,7 @@ function randomRenaming() {
     $path = addAntiSlash($path);
 
     // Scan the directory
-    $scan = array_diff(scandir($path), array('..', '.'));
+    $scan = array_diff(scandir($path), EXCLUDED);
 
     // Renaming
     foreach ($scan as $file) {
@@ -114,7 +114,7 @@ function modifyExtension() {
     $extension = readline2(LANG["modifyExtensionQuestion2"], "empty");
 
     // Scan the directory
-    $scan = array_diff(scandir($path), array('..', '.'));
+    $scan = array_diff(scandir($path), EXCLUDED);
 
     foreach ($scan as $file) {
         // Removing original extension
