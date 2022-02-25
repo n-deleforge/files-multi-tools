@@ -80,7 +80,11 @@ function clearScreen() {
 function newScreen($title, $warning = null) {
     clearScreen();
     displayText($title, "main-title");
-    if ($warning != null) displayText($warning, "warning");
+
+    if ($warning != null) {
+        displayText($warning, "warning");
+    }
+    
     displayText(LANG["menuScriptExit"], "information");
     breakLine(2);
 }
@@ -151,7 +155,6 @@ function readLine2($question, $rules = null) {
 
     // Able to activate or not rules
     if ($rules !== null)  {
-        // Check if it's empty
         if (empty($response)) {
             $errors++;
             array_push($listErrors, LANG["readline2Empty"]);
@@ -196,9 +199,8 @@ function readLine2($question, $rules = null) {
  */ 
 
 function addAntiSlash($str) {
-    if (OS === "Windows") {
-        return (substr($str, -1) != "\\") ? $str . "\\" : $str;
-    }
+    $characterToCheck = (OS === "Windows") ? "\\" : "/";
+    return (substr($str, -1) != $characterToCheck) ? $str . $characterToCheck : $str;
 }
 
 /**
@@ -207,10 +209,7 @@ function addAntiSlash($str) {
  */ 
 
 function randomValue($data = null) {
-    // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
     $data = $data ?? random_bytes(16);
     assert(strlen($data) == 16);
-
-    // Output the 36 character UUID.
     return vsprintf('%s%s%s%s%s%s', str_split(bin2hex($data), 4));
 }
