@@ -13,12 +13,10 @@ function callMenu() {
     displayText("Files Multi Tools", "main-title");
 
     // Diplay informations
-    echo LANG["menuVersion"] . " : " . VERSION;
-    breakLine(1);
-    echo LANG["menuAuthor"] . "  : n-deleforge";
-    breakLine(1);
-    echo "Github  : https://github.com/n-deleforge/files-multi-tools";
-    breakLine(2);
+    displayText(LANG["menuVersion"] . " : " . VERSION, "normal-text-with-br");
+    displayText(LANG["menuOS"] . "  : " . OS, "normal-text-with-br");
+    displayText(LANG["menuAuthor"] . "  : n-deleforge", "normal-text-with-br");
+    displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text-with-double-br");
     displayText(LANG["menuExit"], "information");
 
     // Listing categories
@@ -43,8 +41,12 @@ function callMenu() {
         exit();
     }
     else {
-        foreach(SCRIPTS as $script)
-            if ($script["id"] == $choice) call_user_func($script["function"]);
+        foreach(SCRIPTS as $script) {
+            if ($script["id"] == $choice || lcfirst($script["id"]) == $choice) {
+                call_user_func($script["function"]);
+            }  
+        }
+
     }
 
     callMenu();
@@ -56,7 +58,9 @@ function callMenu() {
  */ 
 
 function breakLine($nbLines) {
-    for ($i = 0; $i < $nbLines; $i++) echo "\n";
+    for ($i = 0; $i < $nbLines; $i++) {
+        echo "\n";
+    }
 }
 
 /**
@@ -64,7 +68,7 @@ function breakLine($nbLines) {
  */ 
 
 function clearScreen() {
-    popen("cls", "w");
+    (OS === "Windows") ? popen("cls", "w") : popen("clear", "w");
 }
 
 /**
@@ -118,6 +122,15 @@ function displayText($text, $style) {
             break;
         case "information":
             echo "\e[33m>> " . $text . "\e[0m";
+            breakLine(1);
+            break;
+        case "normal-text-with-br":
+            echo $text;
+            breakLine(1);
+            break;
+        case "normal-text-with-double-br":
+            echo $text;
+            breakLine(2);
             break;
     }
 }
@@ -183,7 +196,9 @@ function readLine2($question, $rules = null) {
  */ 
 
 function addAntiSlash($str) {
-    return (substr($str, -1) != "\\") ? $str . "\\" : $str;
+    if (OS === "Windows") {
+        return (substr($str, -1) != "\\") ? $str . "\\" : $str;
+    }
 }
 
 /**

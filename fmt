@@ -2,4 +2,4 @@
 
 dir=$(d=$(dirname "$0"); cd "$d" && pwd)
 dir=$(echo $dir | sed 's/ /\ /g')
-php "${dir}/files-multi-tools.py" $*
+php "${dir}/files-multi-tools.php" $*
