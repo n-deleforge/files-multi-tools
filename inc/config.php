@@ -24,14 +24,14 @@ define("SCRIPTS", [
 // ==== MISC
 
 define("EXCLUDED", [
-    // Linux / Windows folders
+    // Linux / Windows files + folders
     "..",
     ".",
 
-    // Windows files
+    // Windows files + folders
     "Thumbs.db",
     "Desktop.ini",
 
-    // Synology folders (NAS)
+    // Synology devices files + folders
     "@eaDir",
 ]);

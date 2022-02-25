@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dir=$(d=$(dirname "$0"); cd "$d" && pwd)
+dir=$(echo $dir | sed 's/ /\ /g')
+php "${dir}/files-multi-tools.py" $*

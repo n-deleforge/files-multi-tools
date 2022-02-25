@@ -1,8 +1,8 @@
 <?php
 
-/*
-    List all the files from a directory
-*/
+/**
+ * List all the files from a directory
+ */ 
 
 function listFiles() {
     newScreen(LANG["listFilesName"]);
@@ -30,9 +30,9 @@ function listFiles() {
     backToMenu();
 }
 
-/*
-    Compare two files
-*/
+/**
+ * Compare two files
+ */ 
 
 function compareFiles() {
     newScreen(LANG["compareFilesName"]);
@@ -74,9 +74,9 @@ function compareFiles() {
     backToMenu();
 }
 
-/*
-    Randomly rename all files in a folder
-*/
+/**
+ * Randomly rename all files in a folder
+ */ 
 
 function randomRenaming() {
     newScreen(LANG["randomRenamingName"], LANG["randomRenamingWarn"]);
@@ -101,9 +101,9 @@ function randomRenaming() {
     backToMenu();
 }
 
-/*
-    Modify every files extension from a directory
-*/
+/**
+ * Modify every files extension from a directory
+ */ 
 
 function modifyExtension() {
     newScreen(LANG["modifyExtensionName"], LANG["modifyExtensionWarn"]);

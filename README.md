@@ -22,25 +22,21 @@
     - Compare two files
 
 # Quick start
-
 ## Disclaimer
-
 This script has only been tested on a Windows PC.  
 I am not responsible for any damage or problems occured from this script on your data. Always backup your data before anything.
 
-## Requirements
+## Installation and usage
 
 PHP >7.2 must be installed on your computer.
-
-## Installation
 
 ```
 git clone https://github.com/n-deleforge/files-multi-tools.git
 cd files-multi-tools
-php files-multi-tools.php
+fmt
 ```
 
-## Launch it from the terminal (Windows only)
+## Launch from terminal
 
 - Edit the PATH global variable and add the directory of files-multi-tools
 - Type "fmt" in your terminal to check if it's works

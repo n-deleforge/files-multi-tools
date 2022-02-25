@@ -3,9 +3,10 @@
 // ===================
 // ==== MENU AND STYLE
 
-/*
-    Call the main menu
-*/
+/**
+ * Call the main menu
+ * @return void
+ */ 
 
 function callMenu() {
     clearScreen();
@@ -49,25 +50,28 @@ function callMenu() {
     callMenu();
 }
 
-/*
-    Break line X times
-*/
+/**
+ * Break X lines
+ * @param integer $nbLines
+ */ 
 
 function breakLine($nbLines) {
     for ($i = 0; $i < $nbLines; $i++) echo "\n";
 }
 
-/*
-    Clear the console screen
-*/
+/**
+ * Clear the console
+ */ 
 
 function clearScreen() {
     popen("cls", "w");
 }
 
-/*
-    Display a new script with the appropriate informations
-*/
+/**
+ * Display a new script with appropriate informations
+ * @param string $title
+ * @param string $warning
+ */ 
 
 function newScreen($title, $warning = null) {
     clearScreen();
@@ -77,18 +81,20 @@ function newScreen($title, $warning = null) {
     breakLine(2);
 }
 
-/*
-    Return to the main menu
-*/
+/**
+ * Return to the main menu
+ */ 
 
 function backToMenu() {
     readline();
     callMenu();
 }
 
-/*
-    Display title with different styles
-*/
+/**
+ * Display text with different styles
+ * @param string $text
+ * @param string $style
+ */ 
 
 function displayText($text, $style) {
     switch ($style) {
@@ -112,19 +118,22 @@ function displayText($text, $style) {
             break;
         case "information":
             echo "\e[33m>> " . $text . "\e[0m";
+            break;
     }
 }
 
-/*
-    Check the answer with different rules
-*/
+/**
+ * Check a readline with different rules
+ * @param string $question
+ * @param string $rules
+ */ 
 
 function readLine2($question, $rules = null) {
     $errors = 0;
     $listErrors = [];
     $response = readline($question);
 
-    // Able to quit every scripts with the `e`
+    // Able to quit every scripts with the `!m` command
     if ($response === "!m" || $response === "!M") callMenu();
 
     // Able to activate or not rules
@@ -149,9 +158,8 @@ function readLine2($question, $rules = null) {
             }
         }
 
-        // Display errors
+        // If there are some errors
         if ($errors > 0) {
-            // Display every errors
             foreach ($listErrors as $msgError) {
                 echo " > " . $msgError;
                 breakLine(1);
@@ -169,17 +177,19 @@ function readLine2($question, $rules = null) {
 // ===================
 // ==== MISC FUNCTIONS
 
-/*
-    Add an anti slash at the end of a string (if not present)
-*/
+/**
+ * Add an antislash if needed
+ * @param string $str
+ */ 
 
 function addAntiSlash($str) {
     return (substr($str, -1) != "\\") ? $str . "\\" : $str;
 }
 
-/*
-    Generate a random value
-*/
+/**
+ * Generate a random value
+ * @param string $data
+ */ 
 
 function randomValue($data = null) {
     // Generate 16 bytes (128 bits) of random data or use the data passed into the function.
