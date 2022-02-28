@@ -1,97 +1,63 @@
 <?php
 
-// ===================
-// ==== MENU AND STYLE
+/**
+  * ==== MENU ====
+ */
 
 /**
  * Call the main menu
- * @return void
- */ 
+ */
 
 function callMenu() {
     clearScreen();
     displayText("Files Multi Tools", "main-title");
 
     // Diplay informations
-    displayText(LANG["menuVersion"] . " : " . VERSION, "normal-text-with-br");
-    displayText(LANG["menuOS"] . "  : " . OS, "normal-text-with-br");
-    displayText(LANG["menuAuthor"] . "  : n-deleforge", "normal-text-with-br");
+    displayText(LANG["menuInfoVersion"] . " : " . VERSION, "normal-text-with-br");
+    displayText(LANG["menuInfoOS"] . "  : " . OS, "normal-text-with-br");
+    displayText(LANG["menuInfoAuthor"] . "  : n-deleforge", "normal-text-with-br");
     displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text-with-double-br");
-    displayText(LANG["menuExit"], "information");
+    displayText(LANG["menuInfoExit"], "information");
 
     // Listing categories
-    foreach(CATEGORIES as $categorie) {
+    foreach (CATEGORIES as $categorie) {
         ($categorie["id"] === 1) ? displayText($categorie["title"], "second-title-a") : displayText($categorie["title"], "second-title-b");
 
         // List scripts per categories
-        foreach(SCRIPTS as $script) {
+        foreach (SCRIPTS as $script) {
             if ($categorie["id"] === $script["categorie"]) {
-                echo $script["id"] . " - " . $script["title"];
+                echo "[" . $script["id"] . "] " . $script["title"];
                 breakLine(1);
             }
         }
     };
 
-    breakLine(1);
-
     // Ask choice
-    $choice = readline2(LANG["menuChoice"]);
+    $choice = readline2(breakLine(1) . LANG["menuChoice"], "no-rules");
+
+    // Check if the user wants to quit
     if ($choice === "!e" || $choice === "!E") {
         clearScreen();
         exit();
-    }
+    } 
+    
+    // Check if the input corresponds to one script
     else {
-        foreach(SCRIPTS as $script) {
-            if ($script["id"] == $choice || lcfirst($script["id"]) == $choice) {
-                call_user_func($script["function"]);
-            }  
+        foreach (SCRIPTS as $script) {
+            if ($script["id"] === $choice || lcfirst($script["id"]) === $choice) {
+                // Check if there are arguments to add to the call function
+                (!$script["argument"]) ? call_user_func($script["function"]) : call_user_func($script["function"], $script["argument"]);
+            }
         }
-
     }
 
+    // If the input is incorrect, recall the function
     callMenu();
 }
 
 /**
- * Break X lines
- * @param integer $nbLines
- */ 
-
-function breakLine($nbLines) {
-    for ($i = 0; $i < $nbLines; $i++) {
-        echo "\n";
-    }
-}
-
-/**
- * Clear the console
- */ 
-
-function clearScreen() {
-    (OS === "Windows") ? popen("cls", "w") : popen("clear", "w");
-}
-
-/**
- * Display a new script with appropriate informations
- * @param string $title
- * @param string $warning
- */ 
-
-function newScreen($title, $warning = null) {
-    clearScreen();
-    displayText($title, "main-title");
-
-    if ($warning != null) {
-        displayText($warning, "warning");
-    }
-    
-    displayText(LANG["menuScriptExit"], "information");
-    breakLine(2);
-}
-
-/**
  * Return to the main menu
- */ 
+ */
 
 function backToMenu() {
     readline();
@@ -99,13 +65,73 @@ function backToMenu() {
 }
 
 /**
+  * ==== STYLE ====
+ */
+
+/**
+ * Break a certain number of llines
+ * @param integer $nb   Number of lines
+ */
+
+function breakLine($nb) {
+    for ($i = 0; $i < $nb; $i++) {
+        echo "\n";
+    }
+}
+
+/**
+ * Clear the console screen
+ */
+
+function clearScreen() {
+    (OS === "Windows") ? popen("cls", "w") : popen("clear", "w");
+}
+
+/**
+ * Display a bunch of informations when a script is called
+ * @param string $title         Title to display
+ * @param string $warning  Warning to display (is null by default)
+ */
+
+function newScreen($title, $warning = null) {
+    clearScreen();
+    displayText($title, "main-title");
+
+    if ($warning !== null) {
+        displayText($warning, "warning");
+    }
+
+    displayText(LANG["menuScriptExit"], "information-with-double-br");
+}
+
+/**
  * Display text with different styles
- * @param string $text
- * @param string $style
- */ 
+ * @param string $text      Text to display
+ * @param string $style     Style to apply
+ */
 
 function displayText($text, $style) {
     switch ($style) {
+            // Normal text
+        case "normal-text-with-br":
+            echo $text;
+            breakLine(1);
+            break;
+        case "normal-text-with-double-br":
+            echo $text;
+            breakLine(2);
+            break;
+        case "normal-text-with-br-before":
+            breakLine(1);
+            echo $text;
+            break;
+        case "normal-text-with-br-around":
+            breakLine(1);
+            echo $text;
+            breakLine(1);
+            break;
+
+            // Titles
         case "main-title":
             echo "===== \e[34m" . strtoupper($text) . "\e[0m =====";
             breakLine(2);
@@ -120,6 +146,8 @@ function displayText($text, $style) {
             echo "===== \e[94m" . $text . "\e[0m =====";
             breakLine(2);
             break;
+
+            // Special texts
         case "warning":
             echo "\e[91m/!\\ " . $text . "\e[0m";
             breakLine(2);
@@ -128,75 +156,87 @@ function displayText($text, $style) {
             echo "\e[33m>> " . $text . "\e[0m";
             breakLine(1);
             break;
-        case "normal-text-with-br":
-            echo $text;
-            breakLine(1);
-            break;
-        case "normal-text-with-double-br":
-            echo $text;
+        case "information-with-double-br":
+            echo "\e[33m>> " . $text . "\e[0m";
             breakLine(2);
             break;
     }
 }
 
 /**
- * Check a readline with different rules
- * @param string $question
- * @param string $rules
- */ 
+  * ==== CHECKING ====
+ */
 
-function readLine2($question, $rules = null) {
+/**
+ * Check a readline with different rules
+ * @param string $question  Text of the question asked
+ * @param string $rules        Rule to check (optional, not-optional, file, folder)
+ */
+
+function readLine2($question, $rules) {
     $errors = 0;
-    $listErrors = [];
+    $listErrors = array();
     $response = readline($question);
 
-    // Able to quit every scripts with the `!m` command
-    if ($response === "!m" || $response === "!M") callMenu();
+    // First, let's check if the user wants to leave the script
+    if ($response === "!m" || $response === "!M") {
+         callMenu();
+    }
 
-    // Able to activate or not rules
-    if ($rules !== null)  {
+    // Then, remove possible quote marks added with drag and drog
+    if (!empty($response) && $response[0] === "\"" && substr($response, -1) === "\"") {
+        $response = str_replace("\"", "", $response);
+    }
+
+    // If rules are activated
+    if ($rules !== "optional") {
+        // It can't be empty
         if (empty($response)) {
             $errors++;
             array_push($listErrors, LANG["readline2Empty"]);
         }
 
+        // Folder rules
         if ($rules === "folder") {
+            // Check folder localisation
             if (!is_dir($response)) {
                 $errors++;
                 array_push($listErrors, LANG["readline2PathFolder"]);
             }
+
+            // Add antislash to avoid errors
+            $response = addAntiSlash($response);
         }
-        
+
+        // Files rules
         if ($rules === "file") {
+            // Check file localisation
             if (!is_file($response)) {
                 $errors++;
                 array_push($listErrors, LANG["readline2PathFile"]);
             }
         }
 
-        // If there are some errors
+        // If there are errors during the checks
         if ($errors > 0) {
+            // Display errors
             foreach ($listErrors as $msgError) {
-                echo " > " . $msgError;
-                breakLine(1);
+                displayText(" > " . $msgError, "normal-text-with-br");
             }
 
-            // Ask again the question
-            breakLine(1);
-            readLine2($question, $rules);
+            // Then, ask again the question
+            return readLine2(breakLine(1) . $question, $rules);
         }
     }
 
+    // If there no errors or no rules, return the response
     return $response;
 }
 
-// ===================
-// ==== MISC FUNCTIONS
-
 /**
  * Add an antislash if needed
- * @param string $str
- */ 
+ * @param string $str   String to check
+ */
 
 function addAntiSlash($str) {
     $characterToCheck = (OS === "Windows") ? "\\" : "/";
@@ -204,12 +244,15 @@ function addAntiSlash($str) {
 }
 
 /**
- * Generate a random value
- * @param string $data
- */ 
+  * ==== MISC ====
+ */
 
-function randomValue($data = null) {
-    $data = $data ?? random_bytes(16);
-    assert(strlen($data) == 16);
-    return vsprintf('%s%s%s%s%s%s', str_split(bin2hex($data), 4));
+/**
+ * Generate a random value
+ */
+
+function randomValue() {
+    $random = random_bytes(16);
+    assert(strlen($random) == 16);
+    return vsprintf('%s%s%s%s%s%s', str_split(bin2hex($random), 4));
 }

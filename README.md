@@ -43,6 +43,7 @@ fmt
 
 # Changelog
 
+- 0.2.3 : new scripts to check MD5/SHA1 hash with one file, some rewriting, linux bash script added
 - 0.2.2 : EXCLUDED constant added (avoid taking thumbs.db for Windows etc.)
 - 0.2.1 : more messages, more informations, new script : modify extensions
 - 0.2 : separation of the script in multiples files, new interface, more errors or informations messages

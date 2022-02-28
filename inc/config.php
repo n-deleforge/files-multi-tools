@@ -1,24 +1,32 @@
 <?php
-// ==============
-// ==== MISC DATA
+
+/**
+  * ==== SETTINGS ====
+ */
+
+define("VERSION", "0.2.3");
+define("OS", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? "Windows" : "Linux");
+
+/**
+  * ==== DATA ====
+ */
 
 define("LANG", [
     // Menu
-    "menuVersion" => "Version",
-    "menuAuthor" => "Author",
-    "menuOS" => "System",
-    "menuTitle1" => "Bulk file operations (in a folder)",
-    "menuTitle2" => "Specific file operations",
-    "menuTitle9" => "Others",
-    "menuExit" => "Enter `!e` to stop and exit the script now.",
+    "menuInfoVersion" => "Version",
+    "menuInfoAuthor" => "Author",
+    "menuInfoOS" => "System",
+    "menuCategorieA" => "Bulk file operations (in a folder)",
+    "menuCategorieB" => "Specific file operations",
+    "menuInfoExit" => "Enter `!e` to stop and exit the script now.",
     "menuScriptExit" => "Enter `!m` to go back to the main menu.",
-    "menuChoice" => "Your choice : ",
+    "menuChoice" => "Choose a script : ",
 
     // Script : listFiles
     "listFilesName" => "List all files",
     "listFilesQuestion1" => "Folder path : ",
-    "listFilesQuestion2" => "File format to delete (optionnel) : ",
-    "listFilesQuestion3" => "Prefix (optionnel) : ",
+    "listFilesQuestion2" => "File format to delete [optional] : ",
+    "listFilesQuestion3" => "Prefix [optional] : ",
     "listFilesDone" => "Listing done in the following file : ",
 
     // Script : compareFiles
@@ -39,10 +47,21 @@ define("LANG", [
 
     // Script : modifyExtension
     "modifyExtensionName" => "Modify all file extensions",
-    "modifyExtensionWarn" => "Be careful with this script. It will modify all files extension and it may corrupt files. Indeed, it doesn't 'convert' files. For example, you can modify JPG to PNG or XT to MD (similar extensions ONLY).",
-    "modifyExtensionQuestion1" => "Directory path : ",
+    "modifyExtensionWarn" => "Be careful with this script. It will modify all files extension and it may corrupt files.",
+    "modifyExtensionQuestion1" => "Folder path : ",
     "modifyExtensionQuestion2" => "New extension : ",
     "modifyExtensionDone" => "Every files extension has been modified in the following folder : ",
+
+    // Script : compareFileHash
+    "compareFileWithHashMD5Name" => "Compare one file with MD5 hash",
+    "compareFileWithHashSHA1Name" => "Compare one file with SHA1 hash",
+    "compareFileWithHashQuestion1" => "File path : ",
+    "compareFileWithHashQuestion2" => "Verified hash : ",
+    "compareFileWithHashWaiting" => "Checking in progress, please wait.",
+    "compareFileWithHashResult1" => "File hash : ",
+    "compareFileWithHashResult2" => "Verified hash : ",
+    "compareFileWithHashSuccess" => "File hash and verified hash are identical.",
+    "compareFileWithHashError" => "File hash and verified hash are different.",
 
     // Function : readline2
     "readline2Empty" => "The value cannot be empty.",
@@ -57,24 +76,19 @@ define("EXCLUDED", [
 
     // Windows only
     "Thumbs.db",
-    "Desktop.ini",
+    "desktop.ini",
 
     // Synology devices
     "@eaDir",
 ]);
 
-// =============
-// ==== SETTINGS
-
-define("VERSION", "0.2.2");
-define("OS", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? "Windows" : "Linux");
-
-// =========================
-// ==== CATEGORIES + SCRIPTS
+/**
+  * ==== CATEGORIES AND SCRIPTS ====
+ */
 
 define("CATEGORIES", [
-    ["id" => "A", "title" => LANG["menuTitle1"]], 
-    ["id" => "B", "title" => LANG["menuTitle2"]], 
+    ["id" => "A", "title" => LANG["menuCategorieA"]], 
+    ["id" => "B", "title" => LANG["menuCategorieB"]], 
 ]);
 
 define("SCRIPTS", [
@@ -82,4 +96,6 @@ define("SCRIPTS", [
     ["categorie" => "A", "id" => "A2", "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
     ["categorie" => "A", "id" => "A3", "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
     ["categorie" => "B", "id" => "B1", "title" => LANG["compareFilesName"], "function" => "compareFiles"],
+    ["categorie" => "B", "id" => "B2", "title" => LANG["compareFileWithHashMD5Name"], "function" => "compareFileWithHash", "argument" => "MD5"],
+    ["categorie" => "B", "id" => "B3", "title" => LANG["compareFileWithHashSHA1Name"], "function" => "compareFileWithHash", "argument" => "SHA1"],
 ]);
