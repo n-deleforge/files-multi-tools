@@ -20,6 +20,8 @@
     - Modify all file extensions
 - Specific file operations
     - Compare two files
+    - Compare one file with MD5 hash
+    - Compare one file with SHA1 hash
 
 # Quick start
 ## Disclaimer
