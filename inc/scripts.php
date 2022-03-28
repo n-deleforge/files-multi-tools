@@ -79,9 +79,11 @@ function randomRenaming() {
 
     // Renaming
     foreach ($scan as $file) {
-        $data = explode(".", $file);
-        $extension = end($data);
-        rename($path . $file, $path . randomValue() . "." . $extension);
+        if (is_file($file)) {
+            $data = explode(".", $file);
+            $extension = end($data);
+            rename($path . $file, $path . randomValue() . "." . $extension);
+        }
     }
 
     // Alert user it's done
@@ -104,13 +106,15 @@ function modifyExtension() {
     $scan = array_diff(scandir($path), EXCLUDED);
 
     foreach ($scan as $file) {
-        // Removing original extension
-        $name = explode(".", $file);
-        array_splice($name, count($name) - 1);
-        $name = implode(".", $name);
+        if (is_file($file)) {
+            // Separate name and extension
+            $name = explode(".", $file);
+            array_splice($name, count($name) - 1);
 
-        // Renaming
-        rename($path . $file, $path . $name . "." . $extension);
+            // Rename with original name and new extension
+            $name = implode(".", $name);
+            rename($path . $file, $path . $name . "." . $extension);
+        }
     }
 
     // Alert user it's done
