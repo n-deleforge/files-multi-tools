@@ -88,7 +88,7 @@ define("EXCLUDED", [
 
 define("CATEGORIES", [
     ["id" => "A", "title" => LANG["menuCategorieA"]], 
-    ["id" => "B", "title" => LANG["menuCategorieB"]], 
+    ["id" => "B", "title" => LANG["menuCategorieB"]],
 ]);
 
 define("SCRIPTS", [

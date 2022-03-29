@@ -8,8 +8,8 @@
  * @license   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
 
-require("inc/config.php");
-require("inc/functions.php");
-require("inc/scripts.php");
+require("src/config.php");
+require("src/functions.php");
+require("src/scripts.php");
 
 callMenu();

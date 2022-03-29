@@ -18,7 +18,10 @@ function listFiles() {
     // Open the text file and write each line
     $file = fopen($path . "output.txt", "w");
     foreach ($scan as $line) {
-        if (!empty($extension)) $line = str_replace("." . $extension, "", $line);
+        // Remove extension if asked
+        if (!empty($extension)) {
+            $line = str_replace("." . $extension, "", $line);
+        }
         fwrite($file, $prefix . $line . "\n");
     }
 
@@ -80,8 +83,11 @@ function randomRenaming() {
     // Renaming
     foreach ($scan as $file) {
         if (is_file($file)) {
+            // Split name and extension
             $data = explode(".", $file);
             $extension = end($data);
+
+            // Rename files with random names
             rename($path . $file, $path . randomValue() . "." . $extension);
         }
     }
@@ -107,11 +113,11 @@ function modifyExtension() {
 
     foreach ($scan as $file) {
         if (is_file($file)) {
-            // Separate name and extension
+            // Keep name and remove extension
             $name = explode(".", $file);
             array_splice($name, count($name) - 1);
 
-            // Rename with original name and new extension
+            // Rename with original name but new extension
             $name = implode(".", $name);
             rename($path . $file, $path . $name . "." . $extension);
         }
