@@ -82,7 +82,7 @@ function randomRenaming() {
 
     // Renaming
     foreach ($scan as $file) {
-        if (is_file($file)) {
+        if (is_file($path . $file)) {
             // Split name and extension
             $data = explode(".", $file);
             $extension = end($data);
@@ -112,7 +112,7 @@ function modifyExtension() {
     $scan = array_diff(scandir($path), EXCLUDED);
 
     foreach ($scan as $file) {
-        if (is_file($file)) {
+        if (is_file($path . $file)) {
             // Keep name and remove extension
             $name = explode(".", $file);
             array_splice($name, count($name) - 1);
