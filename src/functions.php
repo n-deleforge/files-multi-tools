@@ -1,7 +1,9 @@
 <?php
 
 /**
-  * ==== MENU ====
+ * =====================================
+  * ===== MENU
+ * =====================================
  */
 
 /**
@@ -84,7 +86,15 @@ function breakLine($nb) {
  */
 
 function clearScreen() {
-    (OS === "Windows") ? popen("cls", "w") : popen("clear", "w");
+    // For Windows systems
+    if  (OS === "Windows") {
+        popen("cls", "w");
+    }
+    
+    // For Linux systems
+    else {
+        popen("clear", "w");
+    }
 }
 
 /**
@@ -164,7 +174,9 @@ function displayText($text, $style) {
 }
 
 /**
-  * ==== CHECKING ====
+ * =====================================
+  * ===== CHECKING 
+ * =====================================
  */
 
 /**
@@ -244,7 +256,9 @@ function addAntiSlash($str) {
 }
 
 /**
-  * ==== MISC ====
+ * =====================================
+  * ===== MISC
+ * =====================================
  */
 
 /**

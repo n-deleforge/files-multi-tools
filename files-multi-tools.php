@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Files Multi Tools - Various tools for folders and files
+ * Files Multi Tools - Various tools for files and folders
  *
  * @see         https://github.com/n-deleforge/files-multi-tools
  * @author    n-deleforge
