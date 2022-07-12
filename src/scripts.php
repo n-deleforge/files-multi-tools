@@ -48,7 +48,7 @@ function compareFiles() {
     $md5FileB = md5_file($fileB);
 
     // Display MD5 informations
-    displayText("MD5", "second-title-b");
+    displayText("MD5", "second-title");
     displayText("A : " . $md5FileA, "normal-text-with-br");
     displayText("B : " . $md5FileB, "normal-text-with-double-br");
     displayText(LANG["compareFilesWaiting2"], "normal-text-with-br");
@@ -58,7 +58,7 @@ function compareFiles() {
     $sha1FileB = sha1_file($fileB);
 
     // Display SHA1 informations
-    displayText("SHA1", "second-title-b");
+    displayText("SHA1", "second-title");
     displayText("A : " . $sha1FileA, "normal-text-with-br");
     displayText("B : " . $sha1FileB, "normal-text-with-double-br");
 

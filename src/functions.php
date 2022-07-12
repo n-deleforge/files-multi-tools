@@ -23,7 +23,7 @@ function callMenu() {
 
     // Listing categories
     foreach (CATEGORIES as $categorie) {
-        ($categorie["id"] === 1) ? displayText($categorie["title"], "second-title-a") : displayText($categorie["title"], "second-title-b");
+        displayText($categorie["title"], "second-title");
 
         // List scripts per categories
         foreach (SCRIPTS as $script) {
@@ -146,12 +146,7 @@ function displayText($text, $style) {
             echo "===== \e[34m" . strtoupper($text) . "\e[0m =====";
             breakLine(2);
             break;
-        case "second-title-a":
-            breakLine(2);
-            echo "===== \e[94m" . $text . "\e[0m =====";
-            breakLine(2);
-            break;
-        case "second-title-b":
+        case "second-title":
             breakLine(1);
             echo "===== \e[94m" . $text . "\e[0m =====";
             breakLine(2);
