@@ -18,12 +18,12 @@ define("LANG", [
   "menuInfoOS" => "System",
   "menuCategorieFile" => "File operations",
   "menuCategorieFolder" => "Folder operations",
-  "menuInfoExit" => "Enter `!e` to stop and exit the script now.",
+  "menuInfoExit" => "Enter `!e` to stop and exit files-multi-tools now.",
   "menuScriptExit" => "Enter `!m` to go back to the main menu.",
   "menuChoice" => "Choose a script : ",
 
   // Script : listFiles
-  "listFilesName" => "List all files",
+  "listFilesName" => "List all files in a folder",
   "listFilesQuestion1" => "Folder path : ",
   "listFilesQuestion2" => "File extension format to delete [let it empty to not use] : ",
   "listFilesQuestion3" => "Prefix in the list file [let it empty to not use] : ",
@@ -39,14 +39,14 @@ define("LANG", [
   "compareFilesError" => "The two files are different.",
 
   // Script : randomRenaming
-  "randomRenamingName" => "Randomly rename all files",
+  "randomRenamingName" => "Randomly rename all files in a folder",
   "randomRenamingWarn" => "Be careful with this script. It will modifiy all filenames.",
   "randomRenamingQuestion1" => "Folder path : ",
   "randomRenamingDone" => "Every files has been renamed in the following folder : ",
   "randomRenamingCancelled" => "Cancel. No files have been renamed.",
 
   // Script : modifyExtension
-  "modifyExtensionName" => "Modify all file extensions",
+  "modifyExtensionName" => "Modify all file extensions in a folder",
   "modifyExtensionWarn" => "Be careful with this script. It will modify all files extension and it may corrupt files.",
   "modifyExtensionQuestion1" => "Folder path : ",
   "modifyExtensionQuestion2" => "New extension : ",
@@ -87,19 +87,14 @@ define("EXCLUDED", [
 ]);
 
 /**
- * ==== CATEGORIES AND SCRIPTS ====
+ * ==== SCRIPTS ====
  */
 
-define("CATEGORIES", [
-  ["id" => "file", "title" => LANG["menuCategorieFile"]],
-  ["id" => "folder", "title" => LANG["menuCategorieFolder"]],
-]);
-
 define("SCRIPTS", [
-  ["categorie" => "file", "id" => "compare", "title" => LANG["compareFilesName"], "function" => "compareFiles"],
-  ["categorie" => "file", "id" => "md5", "title" => LANG["compareFileWithHashMD5Name"], "function" => "compareFileWithHash", "argument" => "MD5"],
-  ["categorie" => "file", "id" => "sha1", "title" => LANG["compareFileWithHashSHA1Name"], "function" => "compareFileWithHash", "argument" => "SHA1"],
-  ["categorie" => "folder", "id" => "list", "title" => LANG["listFilesName"], "function" => "listFiles"],
-  ["categorie" => "folder", "id" => "randname", "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
-  ["categorie" => "folder", "id" => "extension", "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
+  ["id" => "01", "title" => LANG["compareFilesName"], "function" => "compareFiles"],
+  ["id" => "02", "title" => LANG["compareFileWithHashMD5Name"], "function" => "compareFileWithHash", "argument" => "MD5"],
+  ["id" => "03", "title" => LANG["compareFileWithHashSHA1Name"], "function" => "compareFileWithHash", "argument" => "SHA1"],
+  ["id" => "04", "title" => LANG["listFilesName"], "function" => "listFiles"],
+  ["id" => "05", "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
+  ["id" => "06", "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
 ]);

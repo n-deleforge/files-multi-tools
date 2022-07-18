@@ -21,21 +21,14 @@ function callMenu() {
     displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text-with-double-br");
     displayText(LANG["menuInfoExit"], "information");
 
-    // Listing categories
-    foreach (CATEGORIES as $categorie) {
-        displayText($categorie["title"], "second-title");
-
-        // List scripts per categories
-        foreach (SCRIPTS as $script) {
-            if ($categorie["id"] === $script["categorie"]) {
-                echo "[" . $script["id"] . "] " . $script["title"];
-                breakLine(1);
-            }
-        }
-    };
+    // List scripts
+    foreach (SCRIPTS as $script) {
+        breakLine(1);
+        echo "[" . $script["id"] . "] " . $script["title"];    
+    }
 
     // Ask choice
-    $choice = readline2(breakLine(1) . LANG["menuChoice"], "no-rules");
+    $choice = readline2(breakLine(2) . LANG["menuChoice"], "no-rules");
 
     // Check if the user wants to quit
     if ($choice === "!e" || $choice === "!E") {
@@ -48,7 +41,12 @@ function callMenu() {
         foreach (SCRIPTS as $script) {
             if ($script["id"] === $choice || lcfirst($script["id"]) === $choice) {
                 // Check if there are arguments to add to the call function
-                (!$script["argument"]) ? call_user_func($script["function"]) : call_user_func($script["function"], $script["argument"]);
+                if (!$script["argument"]) {
+                    call_user_func($script["function"]);
+                 }
+                 else {
+                     call_user_func($script["function"], $script["argument"]);
+                 }
             }
         }
     }
