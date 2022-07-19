@@ -5,7 +5,7 @@
  */ 
 
 function listFiles() {
-    newScreen(LANG["listFilesName"]);
+    newScreen(LANG["listFilesName"], LANG["listFilesNameInfo"]);
 
     // Ask informations
     $path = readLine2(LANG["listFilesQuestion1"], "folder");
@@ -36,7 +36,7 @@ function listFiles() {
  */ 
 
 function compareFiles() {
-    newScreen(LANG["compareFilesName"]);
+    newScreen(LANG["compareFilesName"], LANG["compareFilesInfo"]);
 
     // Ask informations
     $fileA = readline2(LANG["compareFilesQuestion1"], "file");
@@ -72,7 +72,7 @@ function compareFiles() {
  */ 
 
 function randomRenaming() {
-    newScreen(LANG["randomRenamingName"], LANG["randomRenamingWarn"]);
+    newScreen(LANG["randomRenamingName"],  LANG["randomRenamingInfo"],  LANG["randomRenamingWarn"]);
 
     // Ask informations
     $path = readLine2(LANG["randomRenamingQuestion1"], "folder");
@@ -102,7 +102,7 @@ function randomRenaming() {
  */ 
 
 function modifyExtension() {
-    newScreen(LANG["modifyExtensionName"], LANG["modifyExtensionWarn"]);
+    newScreen(LANG["modifyExtensionName"], LANG["modifyExtensionInfo"], LANG["modifyExtensionWarn"]);
 
     // Ask informations
     $path = readLine2(LANG["modifyExtensionQuestion1"], "folder");
@@ -135,10 +135,10 @@ function modifyExtension() {
 
 function compareFileWithHash($hash) {
     if ($hash === "MD5") {
-        newScreen(LANG["compareFileWithHashMD5Name"]);
+        newScreen(LANG["compareFileWithHashMD5Name"], LANG["compareFileWithHashInfo"]);
     }
     elseif ($hash === "SHA1") {
-        newScreen(LANG["compareFileWithHashSHA1Name"]);
+        newScreen(LANG["compareFileWithHashSHA1Name"], LANG["compareFileWithHashInfo"]);
     }
 
     // Ask informations

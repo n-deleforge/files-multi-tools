@@ -60,7 +60,7 @@ function callMenu() {
  */
 
 function backToMenu() {
-    readline();
+    readline(breakLine(2) . displayText(LANG["menuBackTo"], "information"));
     callMenu();
 }
 
@@ -97,15 +97,20 @@ function clearScreen() {
 
 /**
  * Display a bunch of informations when a script is called
- * @param string $title         Title to display
- * @param string $warning  Warning to display (is null by default)
+ * @param string $title              Title to display
+ * @param string $information  Information to display
+ * @param string $warning       Warning to display (null by default)
  */
 
-function newScreen($title, $warning = null) {
+function newScreen($title, $information, $warning = null) {
     clearScreen();
     displayText($title, "main-title");
 
-    if ($warning !== null) {
+    if ($information) {
+        displayText($information, "normal-text-with-double-br");
+    }
+
+    if ($warning) {
         displayText($warning, "warning");
     }
 

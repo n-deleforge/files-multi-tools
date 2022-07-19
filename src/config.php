@@ -21,16 +21,19 @@ define("LANG", [
   "menuInfoExit" => "Enter `!e` to stop and exit files-multi-tools now.",
   "menuScriptExit" => "Enter `!m` to go back to the main menu.",
   "menuChoice" => "Choose a script : ",
+  "menuBackTo" => "Press a touch to return to the main menu.",
 
   // Script : listFiles
   "listFilesName" => "List all files in a folder",
+  "listFilesNameInfo" => "Create a text file named 'output.txt' in the choosen folder which will list every files\nin this specific folder. The extension can be deleted and a prefix can be added.",
   "listFilesQuestion1" => "Folder path : ",
-  "listFilesQuestion2" => "File extension format to delete [let it empty to not use] : ",
-  "listFilesQuestion3" => "Prefix in the list file [let it empty to not use] : ",
+  "listFilesQuestion2" => "Extension to delete (for example : txt, mp3) [let it empty to not use] : ",
+  "listFilesQuestion3" => "Prefix to add (for example : -, *) [let it empty to not use] : ",
   "listFilesDone" => "Listing done in the following file : ",
 
   // Script : compareFiles
   "compareFilesName" => "Compare two files",
+  "compareFilesInfo" => "Compare two files with MD5 and SHA1 hashes. According to the file size, it can take a few minutes.",
   "compareFilesQuestion1" => "File A path : ",
   "compareFilesQuestion2" => "File B path : ",
   "compareFilesWaiting1" => "Checking in progress, please wait.",
@@ -40,14 +43,16 @@ define("LANG", [
 
   // Script : randomRenaming
   "randomRenamingName" => "Randomly rename all files in a folder",
-  "randomRenamingWarn" => "Be careful with this script. It will modifiy all filenames.",
+  "randomRenamingInfo" => "Gives random names to every files in the choosen folder.",
+  "randomRenamingWarn" => "Be careful. All your files names will be modified definitively.",
   "randomRenamingQuestion1" => "Folder path : ",
   "randomRenamingDone" => "Every files has been renamed in the following folder : ",
   "randomRenamingCancelled" => "Cancel. No files have been renamed.",
 
   // Script : modifyExtension
   "modifyExtensionName" => "Modify all file extensions in a folder",
-  "modifyExtensionWarn" => "Be careful with this script. It will modify all files extension and it may corrupt files.",
+  "modifyExtensionInfo" => "Modifies extension to every files in the choosen folder.",
+  "modifyExtensionWarn" => "Be careful. All your files extension will be modified and it may corrupt your files.",
   "modifyExtensionQuestion1" => "Folder path : ",
   "modifyExtensionQuestion2" => "New extension : ",
   "modifyExtensionDone" => "Every files extension has been modified in the following folder : ",
@@ -55,6 +60,7 @@ define("LANG", [
   // Script : compareFileHash
   "compareFileWithHashMD5Name" => "Compare one file with MD5 hash",
   "compareFileWithHashSHA1Name" => "Compare one file with SHA1 hash",
+  "compareFileWithHashInfo" => "Compare one file with MD5 or SHA1 hash. According to the file size, it can take a few minutes.",
   "compareFileWithHashQuestion1" => "File path : ",
   "compareFileWithHashQuestion2" => "Verified hash : ",
   "compareFileWithHashWaiting" => "Checking in progress, please wait.",
