@@ -12,14 +12,15 @@
 
 function callMenu() {
     clearScreen();
-    displayText("Files Multi Tools", "main-title");
+    displayText("Files Multi Tools", "main-title", 0, 2);
 
     // Diplay informations
-    displayText(LANG["menuInfoVersion"] . " : " . VERSION, "normal-text-with-br");
-    displayText(LANG["menuInfoOS"] . "  : " . OS, "normal-text-with-br");
-    displayText(LANG["menuInfoAuthor"] . "  : n-deleforge", "normal-text-with-br");
-    displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text-with-double-br");
+    displayText(LANG["menuInfoVersion"] . " : " . VERSION, "normal-text");
+    displayText(LANG["menuInfoOS"] . "  : " . OS, "normal-text");
+    displayText(LANG["menuInfoAuthor"] . "  : n-deleforge", "normal-text");
+    displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text", 0, 2);
     displayText(LANG["menuInfoExit"], "information");
+    displayText(LANG["menuListScript"], "second-title", 1, 1);
 
     // List scripts
     foreach (SCRIPTS as $script) {
@@ -28,7 +29,7 @@ function callMenu() {
     }
 
     // Ask choice
-    $choice = readline2(breakLine(2) . LANG["menuChoice"], "no-rules");
+    $choice = readline2(displayText(LANG["menuChoice"], "normal-text", 2, 0), "no-rules");
 
     // Check if the user wants to quit
     if ($choice === "!e" || $choice === "!E") {
@@ -41,12 +42,7 @@ function callMenu() {
         foreach (SCRIPTS as $script) {
             if ($script["id"] === $choice || lcfirst($script["id"]) === $choice) {
                 // Check if there are arguments to add to the call function
-                if (!$script["argument"]) {
-                    call_user_func($script["function"]);
-                 }
-                 else {
-                     call_user_func($script["function"], $script["argument"]);
-                 }
+                (!$script["argument"]) ? call_user_func($script["function"]) : call_user_func($script["function"], $script["argument"]);
             }
         }
     }
@@ -60,7 +56,8 @@ function callMenu() {
  */
 
 function backToMenu() {
-    readline(breakLine(2) . displayText(LANG["menuBackTo"], "information"));
+    displayText(LANG["menuBackTo"], "information", 2, 0);
+    readline();
     callMenu();
 }
 
@@ -88,7 +85,7 @@ function clearScreen() {
     if  (OS === "Windows") {
         popen("cls", "w");
     }
-    
+
     // For Linux systems
     else {
         popen("clear", "w");
@@ -98,75 +95,67 @@ function clearScreen() {
 /**
  * Display a bunch of informations when a script is called
  * @param string $title              Title to display
- * @param string $information  Information to display
- * @param string $warning       Warning to display (null by default)
+ * @param string $explication  Explication to display
  */
 
-function newScreen($title, $information, $warning = null) {
+function newScreen($title, $explication) {
     clearScreen();
-    displayText($title, "main-title");
-
-    if ($information) {
-        displayText($information, "normal-text-with-double-br");
-    }
-
-    if ($warning) {
-        displayText($warning, "warning");
-    }
-
-    displayText(LANG["menuScriptExit"], "information-with-double-br");
+    displayText($title, "main-title", 0, 2);
+    displayText(LANG["menuScriptExit"], "information", 0, 2);
+    displayText($explication, "explication", 0, 2);
+    echo "================";
+    breakLine(2);
 }
 
 /**
  * Display text with different styles
- * @param string $text      Text to display
- * @param string $style     Style to apply
+ * @param string $text                          Text to display
+ * @param string $style                        Style to apply
+*  @param string $breakLineBefore     Number of lines to break before the text (BY DEFAULT : 0)
+*  @param string $breakLineAfter        Number of lines to break after the text (BY DEFAULT : 1)
  */
 
-function displayText($text, $style) {
+function displayText($text, $style, $breakLineBefore = 0, $breakLineAfter = 1) {
     switch ($style) {
-            // Normal text
-        case "normal-text-with-br":
-            echo $text;
-            breakLine(1);
-            break;
-        case "normal-text-with-double-br":
-            echo $text;
-            breakLine(2);
-            break;
-        case "normal-text-with-br-before":
-            breakLine(1);
-            echo $text;
-            break;
-        case "normal-text-with-br-around":
-            breakLine(1);
-            echo $text;
-            breakLine(1);
-            break;
-
-            // Titles
+        // Titles
         case "main-title":
+            breakLine($breakLineBefore);
             echo "===== \e[34m" . strtoupper($text) . "\e[0m =====";
-            breakLine(2);
+            breakLine($breakLineAfter);
             break;
         case "second-title":
-            breakLine(1);
+            breakLine($breakLineBefore);
             echo "===== \e[94m" . $text . "\e[0m =====";
-            breakLine(2);
+            breakLine($breakLineAfter);
             break;
 
-            // Special texts
-        case "warning":
-            echo "\e[91m/!\\ " . $text . "\e[0m";
-            breakLine(2);
+        // Normal text
+        case "normal-text":
+            breakLine($breakLineBefore);
+            echo $text;
+            breakLine($breakLineAfter);
             break;
-        case "information":
-            echo "\e[33m>> " . $text . "\e[0m";
-            breakLine(1);
+
+        // Special texts
+        case "success": // Green
+            breakLine($breakLineBefore);
+            echo "\e[32m⩗ " . $text . "\e[0m";
+            breakLine($breakLineAfter);
             break;
-        case "information-with-double-br":
-            echo "\e[33m>> " . $text . "\e[0m";
-            breakLine(2);
+         case "error": // Red
+            breakLine($breakLineBefore);
+            echo "\e[31m⨯ " . $text . "\e[0m";
+            breakLine($breakLineAfter);
+            break;
+        case "explication": // Orange
+            breakLine($breakLineBefore);
+            echo "\e[33m" . $text . "\e[0m";
+            breakLine($breakLineAfter);
+            break;
+        case "information": // Cyan
+            breakLine($breakLineBefore);
+            echo "\e[36m>> " . $text . "\e[0m";
+            breakLine($breakLineAfter);
             break;
     }
 }

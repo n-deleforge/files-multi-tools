@@ -27,7 +27,7 @@ function listFiles() {
 
     // Close file and alert user it's done
     fclose($file);
-    displayText(LANG["listFilesDone"] . $path . "output.txt", "normal-text-with-br-before");
+    displayText(LANG["listFilesDone"] . $path . "output.txt", "success", 1, 0);
     backToMenu();
 }
 
@@ -41,29 +41,33 @@ function compareFiles() {
     // Ask informations
     $fileA = readline2(LANG["compareFilesQuestion1"], "file");
     $fileB = readline2(LANG["compareFilesQuestion2"], "file");
-    displayText(LANG["compareFilesWaiting1"] , "normal-text-with-br-around");
+    displayText(LANG["compareFilesWaiting1"] , "normal-text", 1, 1);
 
     // Calculate hash MD5
     $md5FileA = md5_file($fileA);
     $md5FileB = md5_file($fileB);
 
     // Display MD5 informations
-    displayText("MD5", "second-title");
-    displayText("A : " . $md5FileA, "normal-text-with-br");
-    displayText("B : " . $md5FileB, "normal-text-with-double-br");
-    displayText(LANG["compareFilesWaiting2"], "normal-text-with-br");
+    displayText("MD5", "second-title", 1, 1);
+    displayText("A : " . $md5FileA, "normal-text");
+    displayText("B : " . $md5FileB, "normal-text", 0, 2);
+    displayText(LANG["compareFilesWaiting2"], "normal-text", 0, 1);
 
     // Calculate hash SHA1
     $sha1FileA = sha1_file($fileA);
     $sha1FileB = sha1_file($fileB);
 
     // Display SHA1 informations
-    displayText("SHA1", "second-title");
-    displayText("A : " . $sha1FileA, "normal-text-with-br");
-    displayText("B : " . $sha1FileB, "normal-text-with-double-br");
+    displayText("SHA1", "second-title", 1, 1);
+    displayText("A : " . $sha1FileA, "normal-text");
+    displayText("B : " . $sha1FileB, "normal-text");
 
     // Check the hash and alert user
-    echo (($md5FileA == $md5FileB) && ($sha1FileA == $sha1FileB)) ? LANG["compareFilesSuccess"] : LANG["compareFilesError"];
+    if (($md5FileA == $md5FileB) && ($sha1FileA == $sha1FileB))
+        displayText(LANG["compareFilesSuccess"], "success", 0, 0);
+    else
+        displayText(LANG["compareFilesError"], "error", 0, 0);
+
     backToMenu();
 }
 
@@ -72,7 +76,7 @@ function compareFiles() {
  */ 
 
 function randomRenaming() {
-    newScreen(LANG["randomRenamingName"],  LANG["randomRenamingInfo"],  LANG["randomRenamingWarn"]);
+    newScreen(LANG["randomRenamingName"],  LANG["randomRenamingInfo"]);
 
     // Ask informations
     $path = readLine2(LANG["randomRenamingQuestion1"], "folder");
@@ -93,7 +97,7 @@ function randomRenaming() {
     }
 
     // Alert user it's done
-    displayText(LANG["randomRenamingDone"] . $path, "normal-text-with-br-before");
+    displayText(LANG["randomRenamingDone"] . $path, "success", 1, 0);
     backToMenu();
 }
 
@@ -102,7 +106,7 @@ function randomRenaming() {
  */ 
 
 function modifyExtension() {
-    newScreen(LANG["modifyExtensionName"], LANG["modifyExtensionInfo"], LANG["modifyExtensionWarn"]);
+    newScreen(LANG["modifyExtensionName"], LANG["modifyExtensionInfo"]);
 
     // Ask informations
     $path = readLine2(LANG["modifyExtensionQuestion1"], "folder");
@@ -124,7 +128,7 @@ function modifyExtension() {
     }
 
     // Alert user it's done
-    displayText(LANG["modifyExtensionDone"] . $path, "normal-text-with-br-before");
+    displayText(LANG["modifyExtensionDone"] . $path, "success", 0, 0);
     backToMenu();
 }
 
@@ -144,7 +148,7 @@ function compareFileWithHash($hash) {
     // Ask informations
     $file = readline2(LANG["compareFileWithHashQuestion1"], "file");
     $checkHash = readline2(LANG["compareFileWithHashQuestion2"], "not-optional");
-    displayText(LANG["compareFileWithHashWaiting"] , "normal-text-with-br-around");
+    displayText(LANG["compareFileWithHashWaiting"], "normal-text", 1, 1);
 
     // Calculate hash
     if ($hash === "MD5") {
@@ -155,10 +159,16 @@ function compareFileWithHash($hash) {
     }
     
     // // Display results
-    displayText(LANG["compareFileWithHashResult1"] . $fileHash, "normal-text-with-br");
-    displayText(LANG["compareFileWithHashResult2"] . $checkHash, "normal-text-with-double-br");
+    displayText(LANG["compareFileWithHashResult1"] . $fileHash, "normal-text");
+    displayText(LANG["compareFileWithHashResult2"] . $checkHash, "normal-text", 0, 2);
 
     // // Check the hash and alert user
-    echo ($fileHash == $checkHash) ? LANG["compareFileWithHashSuccess"] : LANG["compareFileWithHashError"];
+    if ($fileHash == $checkHash) {
+        displayText(LANG["compareFileWithHashSuccess"], "success", 1, 0);
+    }
+    else {
+        displayText(LANG["compareFileWithHashError"], "error", 1, 0);
+    }
+
     backToMenu();
 }

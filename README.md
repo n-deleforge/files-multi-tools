@@ -14,17 +14,16 @@
 
 # Features
 
-- Bulk file operations :
-    - List all files.
-    - Random renaming all files.
-    - Modify all file extensions.
-- Specific file operations :
-    - Compare two files.
-    - Compare one file with MD5 hash.
-    - Compare one file with SHA1 hash.
+- Compare two files.
+- Compare one file with MD5 hash.
+- Compare one file with SHA1 hash.
+- List all files.
+- Random renaming all files.
+ - Modify all file extensions.
 
 # Quick start
 ## Disclaimer
+
 This script has only been tested on a Windows PC.  
 I am not responsible for any damage or problems occured from this script on your data. Always backup your data before anything.
 
@@ -45,6 +44,7 @@ fmt
 
 # Changelog
 
+- 0.3 : Some visual improvements. Some cleaning code.
 - 0.2.3 : New scripts to check MD5/SHA1 hash with one file, some rewriting, linux bash script added.
 - 0.2.2 : EXCLUDED constant added (avoid taking thumbs.db for Windows etc.).
 - 0.2.1 : More messages, more informations, new script : modify extensions.
