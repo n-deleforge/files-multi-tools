@@ -4,8 +4,9 @@
  * ==== MAIN SETTINGS ====
  */
 
-define("VERSION", "0.3");
+define("VERSION", "0.3.1");
 define("OS", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? "Windows" : "Linux");
+define("CHECKUPDATE", true);
 
 /**
  * ==== LANGUAGE STRINGS ====
@@ -14,6 +15,7 @@ define("OS", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? "Windows" : "Linux");
 define("LANG", [
   // Menu
   "menuInfoVersion" => "Version",
+  "menuInfoUpdate" => " [NEW UPDATE AVAILABLE ON GITHUB]",
   "menuInfoAuthor" => "Author",
   "menuInfoOS" => "System",
   "menuCategorieFile" => "File operations",
@@ -26,7 +28,7 @@ define("LANG", [
 
   // Script : listFiles
   "listFilesName" => "List all files in a folder",
-  "listFilesNameInfo" => "Create a text file named 'output.txt' in the choosen folder which will list every files in this specific folder. The extension can be deleted and a prefix can be added.",
+  "listFilesNameInfo" => "Create a text file named 'output.txt' in the choosen folder which will list every files\nin this specific folder. The extension can be deleted and a prefix can be added.",
   "listFilesQuestion1" => "> Folder path : ",
   "listFilesQuestion2" => "> Extension to delete (for example : txt, mp3) [let it empty to not use] : ",
   "listFilesQuestion3" => "> Prefix to add (for example : -, *) [let it empty to not use] : ",
@@ -44,14 +46,14 @@ define("LANG", [
 
   // Script : randomRenaming
   "randomRenamingName" => "Randomly rename all files in a folder",
-  "randomRenamingInfo" => "Gives random names to every files in the choosen folder. Be careful because all your files names will be modified definitively.",
+  "randomRenamingInfo" => "Gives random names to every files in the choosen folder.\nBe careful because all your files names will be modified definitively.",
   "randomRenamingQuestion1" => "> Folder path : ",
   "randomRenamingDone" => "Every files has been renamed in the following folder : ",
   "randomRenamingCancelled" => "Cancel. No files have been renamed.",
 
   // Script : modifyExtension
   "modifyExtensionName" => "Modify all file extensions in a folder",
-  "modifyExtensionInfo" => "Modifies extension to every files in the choosen folder. Be careful because all your files extension will be modified and it may corrupt your files.",
+  "modifyExtensionInfo" => "Modifies extension to every files in the choosen folder.\nBe careful it's not converting, it's only renaming ! All your files extension will be renamed and it may corrupt your files.",
   "modifyExtensionQuestion1" => "> Folder path : ",
   "modifyExtensionQuestion2" => "> New extension : ",
   "modifyExtensionDone" => "Every files extension has been modified in the following folder : ",

@@ -24,8 +24,9 @@
 # Quick start
 ## Disclaimer
 
-This script has only been tested on a Windows PC.  
-I am not responsible for any damage or problems occured from this script on your data. Always backup your data before anything.
+- This script has only been tested on a Windows PC.  
+- I am not responsible for any damage or problems occured from this script on your data. Always backup your data before anything.
+- Read carefully all informations before running any scripts.
 
 ## Installation and usage
 
@@ -44,6 +45,7 @@ fmt
 
 # Changelog
 
+- 0.3.1 : Checks update availabilty on the homescreen + some little fixes.
 - 0.3 : Some visual improvements. Some cleaning code.
 - 0.2.3 : New scripts to check MD5/SHA1 hash with one file, some rewriting, linux bash script added.
 - 0.2.2 : EXCLUDED constant added (avoid taking thumbs.db for Windows etc.).

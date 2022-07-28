@@ -15,7 +15,7 @@ function callMenu() {
     displayText("Files Multi Tools", "main-title", 0, 2);
 
     // Diplay informations
-    displayText(LANG["menuInfoVersion"] . " : " . VERSION, "normal-text");
+    checkUpdate();
     displayText(LANG["menuInfoOS"] . "  : " . OS, "normal-text");
     displayText(LANG["menuInfoAuthor"] . "  : n-deleforge", "normal-text");
     displayText("Github  : https://github.com/n-deleforge/files-multi-tools", "normal-text", 0, 2);
@@ -29,7 +29,7 @@ function callMenu() {
     }
 
     // Ask choice
-    $choice = readline2(displayText(LANG["menuChoice"], "normal-text", 2, 0), "no-rules");
+    $choice = readline2(displayText(LANG["menuChoice"], "normal-text", 2, 0), "optional");
 
     // Check if the user wants to quit
     if ($choice === "!e" || $choice === "!E") {
@@ -217,14 +217,15 @@ function readLine2($question, $rules) {
         }
 
         // If there are errors during the checks
-        if ($errors > 0) {
+        if ($errors != 0) {
             // Display errors
             foreach ($listErrors as $msgError) {
-                displayText(" > " . $msgError, "normal-text-with-br");
+                displayText($msgError, "error", 0 ,1);
             }
 
             // Then, ask again the question
-            return readLine2(breakLine(1) . $question, $rules);
+            breakLine(1);
+            return readLine2($question, $rules);
         }
     }
 
@@ -247,6 +248,27 @@ function addAntiSlash($str) {
   * ===== MISC
  * =====================================
  */
+
+/**
+ * Check on Github if an update is available
+ */
+
+function checkUpdate() {
+    if (CHECKUPDATE) {
+        // Define URL
+        $url = "https://gist.githubusercontent.com/n-deleforge/b82925d85cb7a1c92ede12091bea2173/raw/fbe2cf1c87fc74130619e52a23661932142eab36/fmt_version.txt";
+
+        // Check the content and compare with the current version
+        $updateFile = fopen($url, "r");
+        $lastVersion = stream_get_contents($updateFile);
+        if ($lastVersion != VERSION) {
+            return displayText(LANG["menuInfoUpdate"], "success");
+        }
+    }
+
+    // In any others cases, display current version
+    return displayText(LANG["menuInfoVersion"] . " : " . VERSION, "normal-text");
+}
 
 /**
  * Generate a random value

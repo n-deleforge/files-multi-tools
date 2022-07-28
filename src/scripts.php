@@ -60,7 +60,7 @@ function compareFiles() {
     // Display SHA1 informations
     displayText("SHA1", "second-title", 1, 1);
     displayText("A : " . $sha1FileA, "normal-text");
-    displayText("B : " . $sha1FileB, "normal-text");
+    displayText("B : " . $sha1FileB, "normal-text", 0, 2);
 
     // Check the hash and alert user
     if (($md5FileA == $md5FileB) && ($sha1FileA == $sha1FileB))
