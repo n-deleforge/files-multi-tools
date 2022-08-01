@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Contains all the scripts called by the user.
+ */
+
+/**
  * List all the files from a directory
  */ 
 
@@ -158,16 +162,38 @@ function compareFileWithHash($hash) {
         $fileHash = sha1_file($file);
     }
     
-    // // Display results
+    // Display results
     displayText(LANG["compareFileWithHashResult1"] . $fileHash, "normal-text");
     displayText(LANG["compareFileWithHashResult2"] . $checkHash, "normal-text", 0, 2);
 
-    // // Check the hash and alert user
+    // Check the hash and alert user
     if ($fileHash == $checkHash) {
         displayText(LANG["compareFileWithHashSuccess"], "success", 1, 0);
     }
     else {
         displayText(LANG["compareFileWithHashError"], "error", 1, 0);
+    }
+
+    backToMenu();
+}
+
+/**
+ * Compare two strings
+ */ 
+
+function compareTwoStrings() {
+    newScreen(LANG["compareTwoStringsName"], LANG["compareTwoStringsInfo"]);
+
+    // Ask informations
+    $strA = readline2(LANG["compareTwoStringsQuestion1"], "not-optional");
+    $strB = readline2(LANG["compareTwoStringsQuestion2"], "not-optional");
+
+    // Check the differences and alert user
+    if ($strA === $strB) {
+        displayText(LANG["compareTwoStringsSuccess"], "success", 1, 0);
+    }
+    else {
+        displayText(LANG["compareTwoStringsError"], "error", 1, 0);
     }
 
     backToMenu();

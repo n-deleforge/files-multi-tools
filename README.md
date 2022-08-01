@@ -14,6 +14,7 @@
 
 # Features
 
+- Compare two strings.
 - Compare two files.
 - Compare one file with MD5 hash.
 - Compare one file with SHA1 hash.
@@ -45,6 +46,7 @@ fmt
 
 # Changelog
 
+- 0.3.2 : Modification of the update check. New script (compare two strings).
 - 0.3.1 : Checks update availabilty on the homescreen + some little fixes.
 - 0.3 : Some visual improvements. Some cleaning code.
 - 0.2.3 : New scripts to check MD5/SHA1 hash with one file, some rewriting, linux bash script added.

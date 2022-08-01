@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Contains all the functions related to the application interface and logic.
+ */
+
+/**
  * =====================================
   * ===== MENU
  * =====================================
@@ -25,7 +29,7 @@ function callMenu() {
     // List scripts
     foreach (SCRIPTS as $script) {
         breakLine(1);
-        echo "[" . $script["id"] . "] " . $script["title"];    
+        echo "[" . $script["id"]  . "] " . $script["title"];    
     }
 
     // Ask choice
@@ -256,7 +260,7 @@ function addAntiSlash($str) {
 function checkUpdate() {
     if (CHECKUPDATE) {
         // Define URL
-        $url = "https://gist.githubusercontent.com/n-deleforge/b82925d85cb7a1c92ede12091bea2173/raw/fbe2cf1c87fc74130619e52a23661932142eab36/fmt_version.txt";
+        $url = "https://nicolas-deleforge.fr/files-multi-tools/34121f983d5eba51b5cc3ace";
 
         // Check the content and compare with the current version
         $updateFile = fopen($url, "r");

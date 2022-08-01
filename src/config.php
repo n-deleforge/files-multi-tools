@@ -1,10 +1,14 @@
 <?php
 
 /**
+ * Contains all the settings.
+ */
+
+/**
  * ==== MAIN SETTINGS ====
  */
 
-define("VERSION", "0.3.1");
+define("VERSION", "0.3.2");
 define("OS", strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' ? "Windows" : "Linux");
 define("CHECKUPDATE", true);
 
@@ -70,6 +74,14 @@ define("LANG", [
   "compareFileWithHashSuccess" => "File hash and verified hash are identical.",
   "compareFileWithHashError" => "File hash and verified hash are different.",
 
+  // Script : compareTwoStrings
+  "compareTwoStringsName" => "Compare two strings",
+  "compareTwoStringsInfo" => "Compare if two strings are totally identical.",
+  "compareTwoStringsQuestion1" => "String A : ",
+  "compareTwoStringsQuestion2" => "String B : ",
+  "compareTwoStringsSuccess" => "The two strings are identical.",
+  "compareTwoStringsError" => "The two strings are different.",
+
   // Function : readline2
   "readline2Empty" => "The value cannot be empty.",
   "readline2PathFolder" => "The folder doesn't exist.",
@@ -98,10 +110,11 @@ define("EXCLUDED", [
  */
 
 define("SCRIPTS", [
-  ["id" => "01", "title" => LANG["compareFilesName"], "function" => "compareFiles"],
-  ["id" => "02", "title" => LANG["compareFileWithHashMD5Name"], "function" => "compareFileWithHash", "argument" => "MD5"],
-  ["id" => "03", "title" => LANG["compareFileWithHashSHA1Name"], "function" => "compareFileWithHash", "argument" => "SHA1"],
-  ["id" => "04", "title" => LANG["listFilesName"], "function" => "listFiles"],
-  ["id" => "05", "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
-  ["id" => "06", "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
+  ["id" => "01", "title" => LANG["compareTwoStringsName"], "function" => "compareTwoStrings"],
+  ["id" => "02", "title" => LANG["compareFilesName"], "function" => "compareFiles"],
+  ["id" => "03", "title" => LANG["compareFileWithHashMD5Name"], "function" => "compareFileWithHash", "argument" => "MD5"],
+  ["id" => "04", "title" => LANG["compareFileWithHashSHA1Name"], "function" => "compareFileWithHash", "argument" => "SHA1"],
+  ["id" => "05", "title" => LANG["listFilesName"], "function" => "listFiles"],
+  ["id" => "06", "title" => LANG["randomRenamingName"], "function" => "randomRenaming"],
+  ["id" => "07", "title" => LANG["modifyExtensionName"], "function" => "modifyExtension"],
 ]);
